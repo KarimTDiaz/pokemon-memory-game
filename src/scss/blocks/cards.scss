@@ -5,10 +5,10 @@
     width: 200px;
     height: 225px;
     color: var(--blue);
-    
     transform-style: preserve-3d;
     transition: transform 0.5s ease-in-out;
     cursor: pointer;
+
     &-container{
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -16,6 +16,8 @@
       max-width: 1440px;
       margin-left: auto;
       margin-right: auto;
+      padding: 5rem;
+      background-color: var(--dark-blue);
     }
   }
   .card__front,
@@ -34,7 +36,7 @@
   
   .card__front {
     transform: rotateY(180deg);
-    background-color: lightcoral;
+    background-color: lightseagreen
   }
 
   .card__back{
