@@ -2,9 +2,15 @@
 import '../scss/styles.scss';
 import { flipCard, flipSingleCard } from './reverse-card.js';
 
+import { createGameBoard, shuffleArray } from './game-board.js';
+
 const cardContainerElement = document.getElementById('card');
-flipCard();
+
+cardContainerElement.append(createGameBoard(shuffleArray))
+
 
 cardContainerElement.addEventListener('click', ev => {
   flipSingleCard(ev.target);
 });
+
+window.addEventListener('load', flipCard)

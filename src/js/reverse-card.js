@@ -1,57 +1,43 @@
-const cardsElement = document.querySelectorAll('.card');
 
 let firstCard;
 let secondCard;
 
 const flipCard = () => {
+  const cardsElement = document.querySelectorAll('.card');
+
   cardsElement.forEach(card => {
-    const timeoutId = setTimeout(() => {
-      card.classList.add('card--show');
-      clearTimeout(timeoutId);
-    }, 2000);
-    card.classList.remove('card--show');
-  });
+    card.classList.add('card--show');
+  })
+  const timeoutId = setTimeout(() => {
+      cardsElement.forEach(card => {
+        card.classList.remove('card--show');
+        clearTimeout(timeoutId);
+    });
+  },2000);
 };
 
 const compareCards = () => {
-  if (firstCard.dataset.card === secondCard.dataset.card) {
-    firstCard.classList.remove('card--show');
-    secondCard.classList.remove('card--show');
-  } else {
-    firstCard.classList.add('card--show');
-    secondCard.classList.add('card--show');
+  if(firstCard.dataset.card !== secondCard.dataset.card){
+   firstCard.classList.remove('card--show')
+   secondCard.classList.remove('card--show')
   }
-};
+  firstCard = undefined
+  secondCard = undefined
+}
 
-const flipSingleCard = singleCard => {
-  if (!firstCard) {
-    firstCard = singleCard;
-    firstCard.classList.remove('card--show');
+const flipSingleCard = (selectedCard) => {
+  if(!firstCard){
+    firstCard = selectedCard
+    firstCard.classList.add('card--show')
   } else {
-    secondCard = singleCard;
-    secondCard.classList.remove('card--show');
-
-    singleCard.addEventListener(
-      'transitionend',
-      () => {
-        if (firstCard && secondCard) {
-          compareCards();
-        }
-      },
-      { once: true }
-    );
+    secondCard = selectedCard
+    secondCard.classList.add('card--show')
   }
-
-  console.log(firstCard);
-  console.log(secondCard);
-
-  //   if (firstCard.dataset !== secondCard.dataset) {
-  //     firstCard.classList.remove('card--show');
-  //     secondCard.classList.remove('card--show');
-  //   } else {
-  //     firstCard.classList.remove('card--show');
-  //     secondCard.classList.remove('card--show');
-  //   }
-};
+  selectedCard.addEventListener('transitionend',() => {
+    if(firstCard && secondCard){
+      compareCards()
+    }
+  }, {once: true})
+}
 
 export { flipCard, flipSingleCard };

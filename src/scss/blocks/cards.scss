@@ -5,12 +5,18 @@
     width: 200px;
     height: 225px;
     color: var(--blue);
-    border: 2px solid var(--black);
+    
     transform-style: preserve-3d;
-    transform: rotateY(180deg);
-   
     transition: transform 0.5s ease-in-out;
     cursor: pointer;
+    &-container{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
   .card__front,
   .card__back {
@@ -52,9 +58,12 @@
     }
   }
   
-
   .card--show{
-    transform: rotateY(0);
+    transform: rotateY(180deg);
+  }
+
+  .card--pointer{
+    pointer-events: none;
   }
 
 //   este efecto no funciona en firefox al back hay que poner translate z 0 para cambiar el contexto de apilamiento
