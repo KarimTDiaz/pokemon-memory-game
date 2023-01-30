@@ -1,0 +1,60 @@
+@use '../mixins/pseudo.scss' as*;
+
+.card {
+    position: relative;
+    width: 200px;
+    height: 225px;
+    color: var(--blue);
+    border: 2px solid var(--black);
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+   
+    transition: transform 0.5s ease-in-out;
+    cursor: pointer;
+  }
+  .card__front,
+  .card__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+  
+  .card__front {
+    transform: rotateY(180deg);
+    background-color: lightcoral;
+  }
+
+  .card__back{
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    background-image:linear-gradient(48deg, rgba(0, 0, 0, 0.07) 50%, transparent 50%), linear-gradient(to bottom, var(--red) 48%, var(--black)48% 52%, var(--white) 52%);
+
+    &::after{
+        @include pseudo(70px, 70px){
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            content: '?';
+            font-size: 3rem;
+            color: var(--black);
+            background-color: var(--white);
+            border: 8px solid var(--black);
+            border-radius: 50%;
+
+        }
+    }
+  }
+  
+
+  .card--show{
+    transform: rotateY(0);
+  }
+
+//   este efecto no funciona en firefox al back hay que poner translate z 0 para cambiar el contexto de apilamiento
