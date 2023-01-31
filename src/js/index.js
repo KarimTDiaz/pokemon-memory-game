@@ -1,6 +1,11 @@
 // El styles lo importamos aquí, ya se carga después al compilar todo
 import '../scss/styles.scss';
-import { flipCard, flipSingleCard, checkPoints } from './reverse-card.js';
+import {
+  flipCard,
+  flipSingleCard,
+  checkPoints,
+  canPlay
+} from './reverse-card.js';
 
 import { createGameBoard, shuffleArray } from './game-board.js';
 
@@ -10,6 +15,7 @@ cardContainerElement.append(createGameBoard(shuffleArray));
 checkPoints();
 
 cardContainerElement.addEventListener('click', ev => {
+  if (!ev.target.classList.contains('card') || canPlay === false) return;
   flipSingleCard(ev.target);
 });
 
