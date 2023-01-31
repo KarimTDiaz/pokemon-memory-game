@@ -19,14 +19,15 @@ const createGameBoard = shuffleCards => {
     const cardFront = document.createElement('div');
     const cardBack = document.createElement('div');
     const cardImage = document.createElement('img');
+
     cardElement.classList.add('card');
     cardFront.classList.add('card__front');
     cardBack.classList.add('card__back');
     cardImage.src = `assets/images/${shuffleCards[index]}.png`;
-    cardFront.append(cardImage);
     cardElement.dataset.card = shuffleCards[index];
+    
+    cardFront.append(cardImage);
     cardElement.append(cardFront, cardBack);
-
     fragment.append(cardElement);
   }
 

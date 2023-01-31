@@ -3,19 +3,16 @@ import '../scss/styles.scss';
 import {
   flipCard,
   flipSingleCard,
-  checkPoints,
-  canPlay
+  checkPoints
 } from './reverse-card.js';
-
 import { createGameBoard, shuffleArray } from './game-board.js';
 
 const cardContainerElement = document.getElementById('card');
-
 cardContainerElement.append(createGameBoard(shuffleArray));
 checkPoints();
 
 cardContainerElement.addEventListener('click', ev => {
-  if (!ev.target.classList.contains('card') || canPlay === false) return;
+  if (!ev.target.classList.contains('card')) return;
   flipSingleCard(ev.target);
 });
 
